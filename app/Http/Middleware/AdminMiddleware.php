@@ -22,7 +22,7 @@ class AdminMiddleware
         }
 
         // Kalau login tapi bukan admin
-        if ((int) Auth::user()->role_id != 1) {
+        if ((int) Auth::user()->role_id !== 1) {
             abort(403, 'Unauthorized');
         }
 

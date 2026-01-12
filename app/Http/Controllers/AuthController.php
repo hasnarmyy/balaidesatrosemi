@@ -5,19 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 use App\Models\User;
 
 class AuthController extends Controller
 {
+    /**
+     * Halaman login
+     */
     public function index()
     {
         if (Auth::check()) {
-            if (Auth::user()->role_id == 1) {
-                return redirect()->route('admin.index');
-            } else {
-                return redirect()->route('pegawai.index');
-            }
+            return $this->redirectByRole(Auth::user());
         }
 
         return view('login', [
@@ -25,7 +23,9 @@ class AuthController extends Controller
         ]);
     }
 
-
+    /**
+     * Proses login
+     */
     public function login(Request $request)
     {
         $request->validate([
@@ -35,34 +35,50 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if ($user) {
-            if ($user->is_active == 1) {
-                if (Hash::check($request->password, $user->password)) {
-                    Auth::login($user);
-
-                    if ($user->role_id == 1) {
-                        Session::put('masuk_admin', true);
-                        return redirect()->route('admin.index');
-                    } else {
-                        Session::put('masuk_user', true);
-                        return redirect()->route('pegawai.index');
-                    }
-                } else {
-                    return back()->with('message', 'Password salah');
-                }
-            } else {
-                return back()->with('message', 'Email belum diaktivasi');
-            }
-        } else {
+        if (!$user) {
             return back()->with('message', 'Email tidak terdaftar');
         }
+
+        if ($user->is_active != 1) {
+            return back()->with('message', 'Akun belum diaktivasi');
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->with('message', 'Password salah');
+        }
+
+        // Login user
+        Auth::login($user);
+
+        // Penting: regenerate session
+        $request->session()->regenerate();
+
+        return $this->redirectByRole($user);
     }
 
-    public function logout()
+    /**
+     * Logout
+     */
+    public function logout(Request $request)
     {
-        Session::forget(['masuk_admin', 'masuk_user']);
         Auth::logout();
-        Session::flash('message', 'Anda berhasil logout');
-        return redirect()->route('login');
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')
+            ->with('message', 'Anda berhasil logout');
+    }
+
+    /**
+     * Redirect berdasarkan role
+     */
+    private function redirectByRole(User $user)
+    {
+        if ((int) $user->role_id === 1) {
+            return redirect()->route('admin.index');
+        }
+
+        return redirect()->route('pegawai.index');
     }
 }

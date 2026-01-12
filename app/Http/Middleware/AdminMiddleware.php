@@ -16,6 +16,15 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Izinkan asset & ajax
+        if (
+            $request->is('storage/*') ||
+            $request->is('assets/*') ||
+            $request->expectsJson()
+        ) {
+            return $next($request);
+        }
+        
         // Kalau belum login, arahkan ke login (JANGAN abort)
         if (!Auth::check()) {
             return redirect()->route('login');

@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pegawai/cetak/{id_pegawai}/{bln}/{thn}', [PegawaiController::class, 'cetakPayrolPegawai'])->name('pegawai.laporan-tpp.cetak');
 });
 
-Route::middleware('auth', 'admin')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
     Route::get('/jabatan', [AdminController::class, 'jabatan'])->name('jabatan');

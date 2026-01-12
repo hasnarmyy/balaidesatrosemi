@@ -16,10 +16,16 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && (int) Auth::user()->role_id === 1) {
-            return $next($request);
+        // Kalau belum login, arahkan ke login (JANGAN abort)
+        if (!Auth::check()) {
+            return redirect()->route('login');
         }
 
-        abort(403);
+        // Kalau login tapi bukan admin
+        if ((int) Auth::user()->role_id != 1) {
+            abort(403, 'Unauthorized');
+        }
+
+        return $next($request);
     }
 }

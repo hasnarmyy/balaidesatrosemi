@@ -3,36 +3,22 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AdminMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        // Izinkan asset & ajax
-        if (
-            $request->is('storage/*') ||
-            $request->is('assets/*') ||
-            $request->expectsJson()
-        ) {
-            return $next($request);
-        }
-        
-        // Kalau belum login, arahkan ke login (JANGAN abort)
-        if (!Auth::check()) {
+        // Pastikan pakai guard yang sama dengan login
+        if (!Auth::guard('web')->check()) {
             return redirect()->route('login');
         }
 
-        // Kalau login tapi bukan admin
-        if ((int) Auth::user()->role_id !== 1) {
-            abort(403, 'Unauthorized');
+        $user = Auth::guard('web')->user();
+
+        if ((int) $user->role_id !== 1) {
+            abort(403);
         }
 
         return $next($request);

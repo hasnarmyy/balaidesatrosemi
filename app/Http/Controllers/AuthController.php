@@ -9,13 +9,12 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    /**
-     * Halaman login
-     */
     public function index()
     {
-        if (Auth::check()) {
-            return $this->redirectByRole(Auth::user());
+        if (Auth::guard('web')->check()) {
+            return Auth::guard('web')->user()->role_id === 1
+                ? redirect()->route('admin.index')
+                : redirect()->route('pegawai.index');
         }
 
         return view('login', [
@@ -23,9 +22,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Proses login
-     */
     public function login(Request $request)
     {
         $request->validate([
@@ -39,46 +35,33 @@ class AuthController extends Controller
             return back()->with('message', 'Email tidak terdaftar');
         }
 
-        if ($user->is_active != 1) {
-            return back()->with('message', 'Akun belum diaktivasi');
+        if ($user->is_active !== 1) {
+            return back()->with('message', 'Email belum diaktivasi');
         }
 
         if (!Hash::check($request->password, $user->password)) {
             return back()->with('message', 'Password salah');
         }
 
-        // Login user
-        Auth::login($user);
+        // 🔐 LOGIN YANG BENAR
+        Auth::guard('web')->login($user);
 
-        // Penting: regenerate session
+        // 🔄 WAJIB
         $request->session()->regenerate();
 
-        return $this->redirectByRole($user);
+        return $user->role_id === 1
+            ? redirect()->route('admin.index')
+            : redirect()->route('pegawai.index');
     }
 
-    /**
-     * Logout
-     */
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('web')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect()->route('login')
             ->with('message', 'Anda berhasil logout');
-    }
-
-    /**
-     * Redirect berdasarkan role
-     */
-    private function redirectByRole(User $user)
-    {
-        if ((int) $user->role_id === 1) {
-            return redirect()->route('admin.index');
-        }
-
-        return redirect()->route('pegawai.index');
     }
 }

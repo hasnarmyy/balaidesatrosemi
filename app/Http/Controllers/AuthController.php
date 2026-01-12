@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use App\Models\User;
 
 class AuthController extends Controller
 {
     public function index()
     {
         if (Auth::check()) {
-            return Auth::user()->role_id == 1
-                ? redirect()->route('admin.index')
-                : redirect()->route('pegawai.index');
+            if (Auth::user()->role_id == 1) {
+                return redirect()->route('admin.index');
+            } else {
+                return redirect()->route('pegawai.index');
+            }
         }
 
         return view('login', [
@@ -22,31 +27,40 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email'    => 'required|email',
             'password' => 'required'
         ]);
 
-        if (!Auth::attempt($credentials)) {
-            return back()->with('message', 'Email atau password salah');
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->with('message', 'Email tidak terdaftar');
         }
 
-        // WAJIB
-        $request->session()->regenerate();
+        if ($user->is_active != 1) {
+            return back()->with('message', 'Email belum diaktivasi');
+        }
 
-        return Auth::user()->role_id == 1
-            ? redirect()->route('admin.index')
-            : redirect()->route('pegawai.index');
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->with('message', 'Password salah');
+        }
+
+        Auth::login($user);
+
+        // Hapus session tambahan, cukup gunakan Auth
+        if ($user->role_id == 1) {
+            return redirect()->route('admin.index');
+        } else {
+            return redirect()->route('pegawai.index');
+        }
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
+        Session::forget(['masuk_admin', 'masuk_user']);
         Auth::logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect()->route('login')
-            ->with('message', 'Anda berhasil logout');
+        Session::flash('message', 'Anda berhasil logout');
+        return redirect()->route('login');
     }
 }

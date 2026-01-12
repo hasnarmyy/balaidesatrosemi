@@ -24,7 +24,6 @@ class AdminController extends Controller
 
     public function index()
     {
-        dd(Auth::guard('web')->check(), Auth::guard('web')->user());
         $totalPegawaiAktif = Pegawai::where('status_kepegawaian', 1)->count();
 
         $totalKehadiranHariIni = Present::whereDate('tanggal', Carbon::today())

@@ -4,19 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PegawaiController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-
-Route::get('/_debug-auth', function () {
-    return response()->json([
-        'auth_check' => Auth::check(),
-        'user' => Auth::user(),
-        'user_id' => Auth::id(),
-        'role_id' => Auth::user()?->role_id,
-        'session_id' => session()->getId(),
-        'session_all' => Session::all(),
-    ]);
-});
 
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/auth/login', [AuthController::class, 'login'])->name('auth.login');

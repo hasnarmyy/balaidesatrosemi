@@ -24,7 +24,7 @@
     </div>
 
     <div class="table-responsive">
-        <table id="example" class="table table-striped table-bordered">
+        <table id="jabatan" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>NO.</th>
@@ -137,7 +137,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#example').DataTable({
+        $('#jabatan').DataTable({
             language: {
                 emptyTable: "Tidak ada data jabatan",
                 search: "Cari:",

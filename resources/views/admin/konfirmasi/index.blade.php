@@ -36,7 +36,7 @@
     </div>
 
     <div class="table-responsive">
-        <table id="example" class="table table-striped table-bordered">
+        <table id="konfirmasi" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>#</th>
@@ -257,7 +257,7 @@
 </div>
 <script>
 $(document).ready(function () {
-    $('#example').DataTable({
+    $('#konfirmasi').DataTable({
         language: {
             emptyTable: "Tidak ada data konfirmasi absen hari ini",
             search: "Cari:",

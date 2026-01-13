@@ -33,7 +33,7 @@
     </div>
 
     <div class="table-responsive">
-        <table id="example" class="table table-striped table-bordered">
+        <table id="lemburini" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>NO.</th>
@@ -169,7 +169,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#example').DataTable({
+        $('#lemburini').DataTable({
             language: {
                 emptyTable: "Tidak ada data lembur hari ini",
                 search: "Cari:",

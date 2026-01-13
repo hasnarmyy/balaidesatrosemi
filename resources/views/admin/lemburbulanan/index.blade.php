@@ -129,7 +129,7 @@ return $bulan[$angka] ?? '';
     $(document).ready(function() {
         $('#lemburTable').DataTable({
             "language": {
-                "emptyTable": "Tidak ada data lembur bulanan tersedia",
+                "emptyTable": "Tidak ada data lembur bulanan",
                 "lengthMenu": "Tampilkan _MENU_ data",
                 "search": "Cari:",
                 "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",

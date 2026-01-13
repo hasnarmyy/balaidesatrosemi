@@ -186,7 +186,7 @@ class PegawaiController extends Controller
 
             $latKantor = -7.5887862;
             $longKantor = 110.7505422;
-            $radiusMaks = 100000; // dalam meter
+            $radiusMaks = 100; // dalam meter
 
             $latUser = (float) $request->input('latitude');
             $longUser = (float) $request->input('longitude');

@@ -255,4 +255,21 @@
         </table>
     </div>
 </div>
+<script>
+$(document).ready(function () {
+    $('#example').DataTable({
+        language: {
+            emptyTable: "Tidak ada data konfirmasi absen hari ini",
+            search: "Cari:",
+            lengthMenu: "Tampilkan _MENU_ data",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+            infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+            paginate: {
+                previous: "Sebelumnya",
+                next: "Berikutnya"
+            }
+        }
+    });
+});
+</script>
 @endsection

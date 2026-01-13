@@ -167,11 +167,8 @@
     </div>
     @endforeach
 </div>
-
-@endsection
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#example').DataTable({
             language: {
                 emptyTable: "Tidak ada data lembur hari ini",
@@ -187,6 +184,8 @@
         });
     });
 </script>
+@endsection
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         flatpickr('.waktu-lembur', {

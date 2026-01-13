@@ -340,10 +340,8 @@
     </div>
     @endforeach
 </div>
-@endsection
-
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#example').DataTable({
             language: {
                 emptyTable: "Tidak ada data pegawai",
@@ -359,3 +357,4 @@
         });
     });
 </script>
+@endsection

@@ -458,13 +458,4 @@ return 'Rp ' . number_format($angka ?? 0, 0, ',', '.');
         }
     }
 </script>
-
-<style>
-    .dataTables_empty {
-        background-color: #f8f9fa !important;
-        color: #6c757d;
-        font-style: italic;
-    }
-</style>
-
 @endsection

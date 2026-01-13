@@ -171,13 +171,4 @@ return $bulan[$angka] ?? '';
         }
     }
 </script>
-
-<style>
-    .dataTables_empty {
-        background-color: #f8f9fa !important;
-        color: #6c757d;
-        font-style: italic;
-    }
-</style>
-
 @endsection

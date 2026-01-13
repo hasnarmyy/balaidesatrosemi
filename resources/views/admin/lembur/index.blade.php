@@ -171,6 +171,23 @@
 @endsection
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            language: {
+                emptyTable: "Tidak ada data lembur hari ini",
+                search: "Cari:",
+                lengthMenu: "Tampilkan _MENU_ data",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+                paginate: {
+                    previous: "Sebelumnya",
+                    next: "Berikutnya"
+                }
+            }
+        });
+    });
+</script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
         flatpickr('.waktu-lembur', {
             enableTime: true,

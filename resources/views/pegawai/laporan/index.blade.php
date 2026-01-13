@@ -111,7 +111,7 @@
                         </tr>
                         @else
                         <tr>
-                            <td colspan="9" class="text-center">Tidak ada data gaji</td>
+                            <td colspan="9" class="text-center">Tidak ada data gaji bulanan</td>
                         </tr>
                         @endif
                     </tbody>

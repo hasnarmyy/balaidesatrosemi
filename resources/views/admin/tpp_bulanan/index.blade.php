@@ -334,7 +334,7 @@ return 'Rp ' . number_format($angka ?? 0, 0, ',', '.');
     $(document).ready(function() {
         $('#payrollTable').DataTable({
             "language": {
-                "emptyTable": "No data available in table",
+                "emptyTable": "Tidak ada data gaji pegawai bulanan",
                 "lengthMenu": "Show _MENU_ entries",
                 "search": "Search:",
                 "info": "Showing _START_ to _END_ of _TOTAL_ entries",

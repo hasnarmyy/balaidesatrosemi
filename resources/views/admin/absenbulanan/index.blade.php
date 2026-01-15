@@ -137,34 +137,34 @@
                                 @break
 
                                 @case(1)
-                                <span class="badge badge-success">Masuk</span>
+                                <span>Masuk</span>
                                 @break
 
                                 @case(2)
-                                <span class="badge badge-success">Pulang</span>
+                                <span>Pulang</span>
                                 @break
 
                                 @case(3)
-                                <span class="badge badge-success">Lembur</span>
+                                <span>Lembur</span>
                                 @break
 
                                 @case(4)
-                                <span class="badge badge-success">Izin Sakit</span>
+                                <span>Izin Sakit</span>
                                 @break
 
                                 @case(5)
-                                <span class="badge badge-success">Izin Tidak Masuk</span>
+                                <span>Izin Tidak Masuk</span>
                                 @break
 
                                 @default
-                                <span class="badge badge-secondary">Tidak Diketahui</span>
+                                <span>Tidak Diketahui</span>
                                 @endswitch
                             </td>
                             <td class="text-center">
                                 @if (empty($b['id_lembur']))
-                                <span class="badge badge-danger">Tidak</span>
+                                <span>Tidak</span>
                                 @else
-                                <span class="badge badge-success">Iya</span>
+                                <span>Iya</span>
                                 @endif
                             </td>
                             <td class="text-center">

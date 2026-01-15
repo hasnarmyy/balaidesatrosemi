@@ -359,26 +359,78 @@
                 </h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+
             <form action="{{ url('pegawai/edit-password/' . $user->id) }}" method="post">
                 @csrf
                 <div class="modal-body px-4">
+
+                    {{-- Password Lama --}}
                     <div class="form-group">
-                        <label class="font-weight-600 text-dark" style="font-size: 0.9rem;">Password Lama</label>
-                        <input type="password" name="password_lama" class="form-control" required style="border-radius: 8px;">
+                        <label class="font-weight-600 text-dark" style="font-size: 0.9rem;">
+                            Password Lama
+                        </label>
+                        <div class="input-group">
+                            <input type="password" name="password_lama" id="password_lama"
+                                class="form-control" required
+                                style="border-radius: 8px 0 0 8px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="togglePassword('password_lama', this)"
+                                    style="border-radius: 0 8px 8px 0;">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
+
+                    {{-- Password Baru --}}
                     <div class="form-group">
-                        <label class="font-weight-600 text-dark" style="font-size: 0.9rem;">Password Baru</label>
-                        <input type="password" name="password_baru" class="form-control" required style="border-radius: 8px;">
+                        <label class="font-weight-600 text-dark" style="font-size: 0.9rem;">
+                            Password Baru
+                        </label>
+                        <div class="input-group">
+                            <input type="password" name="password_baru" id="password_baru"
+                                class="form-control" required
+                                style="border-radius: 8px 0 0 8px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="togglePassword('password_baru', this)"
+                                    style="border-radius: 0 8px 8px 0;">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
                         <small class="form-text text-muted">Minimal 8 karakter</small>
                     </div>
+
+                    {{-- Konfirmasi Password Baru --}}
                     <div class="form-group">
-                        <label class="font-weight-600 text-dark" style="font-size: 0.9rem;">Konfirmasi Password Baru</label>
-                        <input type="password" name="password_baru1" class="form-control" required style="border-radius: 8px;">
+                        <label class="font-weight-600 text-dark" style="font-size: 0.9rem;">
+                            Konfirmasi Password Baru
+                        </label>
+                        <div class="input-group">
+                            <input type="password" name="password_baru1" id="password_baru1"
+                                class="form-control" required
+                                style="border-radius: 8px 0 0 8px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    onclick="togglePassword('password_baru1', this)"
+                                    style="border-radius: 0 8px 8px 0;">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
+
                 <div class="modal-footer border-0 px-4 pb-4">
-                    <button type="button" class="btn btn-light px-4" data-dismiss="modal" style="border-radius: 8px;">Batal</button>
-                    <button type="submit" class="btn btn-danger px-4" style="border-radius: 8px;">
+                    <button type="button" class="btn btn-light px-4"
+                        data-dismiss="modal" style="border-radius: 8px;">
+                        Batal
+                    </button>
+                    <button type="submit" class="btn btn-danger px-4"
+                        style="border-radius: 8px;">
                         <i class="fa fa-save mr-1"></i>Update Password
                     </button>
                 </div>
@@ -386,6 +438,22 @@
         </div>
     </div>
 </div>
+<script>
+    function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const icon = btn.querySelector('i');
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
 
 <style>
     .table-hover tbody tr:hover {

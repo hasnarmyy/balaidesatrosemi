@@ -563,7 +563,7 @@ class AdminController extends Controller
         return view('admin.absenbulanan.index', [
             'title' => 'Absen Bulanan',
             'user' => Auth::user(),
-            'list_th' => range(2024, 2028),
+            'list_th' => range(2025, 2030),
             'list_bln' => range(1, 12),
             'pegawai' => $pegawai,
             'detail_pegawai' => $detailPegawai ?? [],
@@ -778,7 +778,7 @@ class AdminController extends Controller
             $thnselected = $tahun;
         }
 
-        $years = range(2024, 2028);
+        $years = range(2025, 2030);
         $months = range(1, 12);
 
         return view('admin.tpp_bulanan.index', [
@@ -1088,7 +1088,7 @@ class AdminController extends Controller
             'title' => 'Cetak Gaji Bulanan',
             'user' => Auth::user(),
             'pegawai' => Pegawai::all(),
-            'list_th' => range(2024, 2028),
+            'list_th' => range(2025, 2030),
             'list_bln' => range(1, 12),
             'gaji' => $gaji,
             'blnselected' => $bulan,
@@ -1296,6 +1296,6 @@ class AdminController extends Controller
     // Helper untuk list tahun
     private function getTahunList()
     {
-        return range(2024, 2028);
+        return range(2025, 2030);
     }
 }

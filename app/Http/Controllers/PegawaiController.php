@@ -826,6 +826,6 @@ class PegawaiController extends Controller
     // Helper untuk list tahun
     private function getTahunList()
     {
-        return range(2024, 2028);
+        return range(2025, 2030);
     }
 }

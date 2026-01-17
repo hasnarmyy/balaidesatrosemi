@@ -263,26 +263,14 @@
 
                                     <div class="form-group">
                                         <label>KTP</label>
-
-                                        @if ($p->ktp)
-                                        <small class="text-muted d-block mb-1">
-                                            File saat ini: {{ basename($p->ktp) }}
-                                        </small>
-                                        @endif
-
                                         <input type="file" name="userfilektp" class="form-control">
+
                                     </div>
 
                                     <div class="form-group">
                                         <label>Foto</label>
-
-                                        @if ($p->foto)
-                                        <small class="text-muted d-block mb-1">
-                                            File saat ini: {{ basename($p->foto) }}
-                                        </small>
-                                        @endif
-
                                         <input type="file" name="userfilefoto" class="form-control">
+
                                     </div>
                                 </div>
 

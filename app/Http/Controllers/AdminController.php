@@ -44,9 +44,7 @@ class AdminController extends Controller
             ->where('status', 0) // Status 0 = belum dikonfirmasi
             ->count();
 
-        $totalUser = User::where('role_id', 2)
-            ->where('is_active', 1)
-            ->count();
+        $totalUser = User::where('is_active', 1)->count();
 
         $payrollPerBulan = Payroll::selectRaw('MONTH(periode) as bulan, SUM(gaji_bersih) as total')
             ->whereYear('periode', Carbon::now()->year)

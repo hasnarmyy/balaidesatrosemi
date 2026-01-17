@@ -28,7 +28,7 @@ return new class extends Migration
             $table->integer('is_active');
 
             // Timestamp custom (int)
-            $table->integer('date_created');
+            $table->datetime('date_created');
         });
     }
 

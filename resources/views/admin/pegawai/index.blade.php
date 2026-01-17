@@ -264,26 +264,22 @@
                                     <div class="form-group">
                                         <label>KTP</label>
 
-                                        {{-- TAMPILKAN KTP LAMA --}}
                                         @if ($p->ktp)
-                                        <small class="text-muted d-block mb-1">KTP saat ini:</small>
-                                        <a href="{{ asset('storage/'.$p->ktp) }}" target="_blank">
-                                            Lihat KTP
-                                        </a>
+                                        <small class="text-muted d-block mb-1">
+                                            File saat ini: {{ basename($p->ktp) }}
+                                        </small>
                                         @endif
 
-                                        <input type="file" name="userfilektp" class="form-control mt-2">
+                                        <input type="file" name="userfilektp" class="form-control">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Foto</label>
 
-                                        {{-- TAMPILKAN FOTO LAMA --}}
                                         @if ($p->foto)
-                                        <small class="text-muted d-block mb-1">Foto saat ini:</small>
-                                        <img src="{{ asset('storage/'.$p->foto) }}"
-                                            width="120"
-                                            class="img-thumbnail mb-2">
+                                        <small class="text-muted d-block mb-1">
+                                            File saat ini: {{ basename($p->foto) }}
+                                        </small>
                                         @endif
 
                                         <input type="file" name="userfilefoto" class="form-control">

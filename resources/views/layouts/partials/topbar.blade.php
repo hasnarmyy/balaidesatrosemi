@@ -21,18 +21,6 @@
                     <span class="menu-icon" onclick="toggle_sidebar()">
                         <span id="sidebar-toggle-btn"></span>
                     </span>
-
-                    <div class="menu-icon">
-                        <div class="dropdown dropdown-left bg-white shadow border">
-                            <a class="dropdown-item" href="#"><strong>Notifications</strong></a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-center link-all" href="#">See all notifications ></a>
-                        </div>
-                    </div>
-
-                    <span class="menu-icon">
-                        <i class="fa fa-th-large"></i>
-                    </span>
                 </div>
 
                 <div class="col-sm-8 col-4 text-right flex-header-menu justify-content-end">

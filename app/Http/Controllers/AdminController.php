@@ -44,7 +44,9 @@ class AdminController extends Controller
             ->where('status', 0) // Status 0 = belum dikonfirmasi
             ->count();
 
-        $totalUser = User::where('is_active', 1)->count();
+        $totalUser = User::where('role_id', 2)
+            ->where('is_active', 1)
+            ->count();
 
         $payrollPerBulan = Payroll::selectRaw('MONTH(periode) as bulan, SUM(gaji_bersih) as total')
             ->whereYear('periode', Carbon::now()->year)
@@ -146,7 +148,12 @@ class AdminController extends Controller
         $validated = $request->validate([
             'nama_pegawai' => 'required|string|max:255',
             'jekel' => 'required|in:L,P',
-            'email' => 'required|email|unique:user,email',
+            'email' => [
+                'required',
+                'email',
+                'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/',
+                'unique:users,email'
+            ],
             'pendidikan' => 'required|string|max:255',
             'status_pegawai' => 'required|boolean',
             'agama' => 'required|string',
@@ -156,11 +163,17 @@ class AdminController extends Controller
             'tgl_msk' => 'required|date',
             'userfilefoto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'userfilektp' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
+        ], [
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.regex' => 'Email harus menggunakan domain @gmail.com',
+            'email.unique' => 'Email sudah terdaftar',
         ]);
-
         Log::info("ID Jabatan:", [$validated['id_jabatan']]);
         Log::info("Data Pegawai:", $validated);
 
+        // ✅ AUTO LOWERCASE EMAIL
+        $email = strtolower($validated['email']);
         DB::beginTransaction();
 
         try {

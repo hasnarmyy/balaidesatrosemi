@@ -78,9 +78,18 @@
                                         <i
                                             class="fa fa-envelope text-gray-400 group-focus-within:text-blue-900 transition-colors"></i>
                                     </div>
-                                    <input type="text" id="email" name="email" value="{{ old('email') }}"
-                                        placeholder="nama@email.com"
-                                        class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-900 focus:border-blue-900 transition duration-200 text-sm md:text-base bg-gray-50 focus:bg-white">
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value="{{ old('email') }}"
+                                        placeholder="nama@gmail.com"
+                                        required
+                                        pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
+                                        title="Email harus menggunakan domain @gmail.com"
+                                        class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl
+                                        focus:ring-2 focus:ring-blue-900 focus:border-blue-900
+                                        transition duration-200 text-sm md:text-base bg-gray-50 focus:bg-white">
                                 </div>
                                 @error('email')
                                 <p class="mt-2 text-sm text-red-600 flex items-center space-x-1">

@@ -110,7 +110,8 @@
 
                                     <div class="form-group">
                                         <label>Nama</label>
-                                        <input type="text" name="nama_pegawai" class="form-control" required>
+                                        <input type="text" name="nama_pegawai" class="form-control" required
+                                            oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
                                     </div>
 
                                     <div class="form-group">
@@ -124,7 +125,15 @@
 
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input type="email" name="email" class="form-control" required>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            class="form-control"
+                                            placeholder="nama@gmail.com"
+                                            required
+                                            pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
+                                            title="Email harus menggunakan domain @gmail.com"
+                                            oninput="this.value = this.value.toLowerCase()">
                                     </div>
 
                                     <div class="form-group">
@@ -173,7 +182,10 @@
 
                                     <div class="form-group">
                                         <label>No.HP</label>
-                                        <input type="text" name="nohp" class="form-control" required>
+                                        <input type="number" name="nohp" class="form-control" required
+                                            min="0" step="1"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                            onkeydown="if(event.key === 'e' || event.key === '-' || event.key === '+') event.preventDefault()">
                                     </div>
 
                                     <div class="form-group">
@@ -228,8 +240,11 @@
 
                                     <div class="form-group">
                                         <label>Nama</label>
-                                        <input type="text" name="nama_pegawai" class="form-control"
-                                            value="{{ $p->nama_pegawai }}" required>
+                                        <div class="form-group">
+                                            <input type="text" name="nama_pegawai" class="form-control"
+                                                value="{{ $p->nama_pegawai }}" required
+                                                oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -310,7 +325,8 @@
                                     <div class="form-group">
                                         <label>No.HP</label>
                                         <input type="text" name="nohp" class="form-control"
-                                            value="{{ $p->no_hp }}" required>
+                                            value="{{ $p->no_hp }}" required
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                     </div>
 
                                     <div class="form-group">

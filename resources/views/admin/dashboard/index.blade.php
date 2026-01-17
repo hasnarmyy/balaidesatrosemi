@@ -109,21 +109,22 @@
         </div>
 
         <div class="col-lg-6 mb-3">
-            <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; overflow: hidden;">
-                <div class="card-body bg-warning">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="text-white">
-                            <p class="mb-2 font-weight-600" style="font-size: 1rem; opacity: 0.9;">User Aktif</p>
-                            <h1 class="font-weight-bold mb-1 display-4">{{ $totalUser }}</h1>
-                            <p class="mb-0 font-weight-500" style="font-size: 0.95rem;">Total User Terdaftar</p>
-                        </div>
-                        <div class="bg-white shadow-sm"
-                            style="width: 70px; height: 70px; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fa fa-users-cog text-warning" style="font-size: 2.5rem;"></i>
+            <a href="{{ route('admin.akun-pegawai') }}" style="text-decoration: none;">
+                <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; overflow: hidden;">
+                    <div class="card-body bg-warning">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="text-white">
+                                <p class="mb-2 font-weight-600" style="font-size: 1rem; opacity: 0.9;">Pegawai Aktif</p>
+                                <h1 class="font-weight-bold mb-1 display-4">{{ $totalUser }}</h1>
+                                <p class="mb-0 font-weight-500" style="font-size: 0.95rem;">Total Pegawai Terdaftar</p>
+                            </div>
+                            <div class="bg-white shadow-sm"
+                                style="width: 70px; height: 70px; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fa fa-users-cog text-warning" style="font-size: 2.5rem;"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 

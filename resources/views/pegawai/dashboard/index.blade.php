@@ -1,5 +1,3 @@
-<!-- views/pegawai/dashboard/index.blade.php -->
-
 @extends('layouts.pegawai.main')
 
 @section('content')
@@ -38,68 +36,81 @@
     @endif
 
     <div class="row mb-4">
+
+        {{-- PROFILE --}}
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-3">
-            <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; overflow: hidden;">
-                <div class="card-body" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <div class="text-white">
-                            <p class="mb-1 text-white-50" style="font-size: 0.85rem;">Data Pegawai</p>
-                            <h4 class="font-weight-bold mb-0">Profile</h4>
-                        </div>
-                        <div class="bg-white shadow-sm" style="width: 55px; height: 55px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fa fa-users" style="font-size: 1.8rem; color: #667eea;"></i>
+            <a href="{{ route('pegawai.index') }}" class="text-decoration-none">
+                <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; overflow: hidden;">
+                    <div class="card-body" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="text-white">
+                                <p class="mb-1 text-white-50" style="font-size: 0.85rem;">Data Pegawai</p>
+                                <h4 class="font-weight-bold mb-0">Profile</h4>
+                            </div>
+                            <div class="bg-white shadow-sm" style="width:55px;height:55px;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                <i class="fa fa-user text-primary" style="font-size:1.8rem;"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-3">
-            <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; overflow: hidden;">
-                <div class="card-body bg-success">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <div class="text-white">
-                            <p class="mb-1 text-white-50" style="font-size: 0.85rem;">Status Hari Ini</p>
-                            <h4 class="font-weight-bold mb-0">Konfirmasi</h4>
-                        </div>
-                        <div class="bg-white shadow-sm" style="width: 55px; height: 55px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fa fa-bookmark text-success" style="font-size: 1.8rem;"></i>
+            <a href="{{ route('pegawai.absenHarian') }}" class="text-decoration-none">
+                <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; overflow: hidden;">
+                    <div class="card-body bg-success">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="text-white">
+                                <p class="mb-1 text-white-50" style="font-size: 0.85rem;">Hari Ini</p>
+                                <h4 class="font-weight-bold mb-0">Ambil Absen</h4>
+                            </div>
+                            <div class="bg-white shadow-sm"
+                                style="width:55px;height:55px;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                <i class="fa fa-fingerprint text-success" style="font-size:1.8rem;"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
+        {{-- REKAP ABSENSI --}}
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-3">
-            <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; overflow: hidden;">
-                <div class="card-body" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <div class="text-white">
-                            <p class="mb-1 text-white-50" style="font-size: 0.85rem;">Rekap Bulanan</p>
-                            <h4 class="font-weight-bold mb-0">Absensi</h4>
-                        </div>
-                        <div class="bg-white shadow-sm" style="width: 55px; height: 55px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fa fa-calendar-alt" style="font-size: 1.8rem; color: #4facfe;"></i>
+            <a href="{{ route('pegawai.absen-bulanan') }}" class="text-decoration-none">
+                <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; overflow: hidden;">
+                    <div class="card-body" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="text-white">
+                                <p class="mb-1 text-white-50" style="font-size: 0.85rem;">Rekap Bulanan</p>
+                                <h4 class="font-weight-bold mb-0">Absensi</h4>
+                            </div>
+                            <div class="bg-white shadow-sm" style="width:55px;height:55px;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                <i class="fa fa-calendar-alt text-info" style="font-size:1.8rem;"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
+        {{-- GAJI --}}
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-3">
-            <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; overflow: hidden;">
-                <div class="card-body bg-warning">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <div class="text-white">
-                            <p class="mb-1 text-white-50" style="font-size: 0.85rem;">Penghasilan</p>
-                            <h4 class="font-weight-bold mb-0">Gaji & Bonus</h4>
-                        </div>
-                        <div class="bg-white shadow-sm" style="width: 55px; height: 55px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fa fa-wallet text-warning" style="font-size: 1.8rem"></i>
+            <a href="{{ route('pegawai.laporan-tpp-bulanan') }}" class="text-decoration-none">
+                <div class="card border-0 shadow-sm h-100" style="border-radius: 15px; overflow: hidden;">
+                    <div class="card-body bg-warning">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="text-white">
+                                <p class="mb-1 text-white-50" style="font-size: 0.85rem;">Penghasilan</p>
+                                <h4 class="font-weight-bold mb-0">Gaji & Bonus</h4>
+                            </div>
+                            <div class="bg-white shadow-sm" style="width:55px;height:55px;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                <i class="fa fa-wallet text-warning" style="font-size:1.8rem;"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 

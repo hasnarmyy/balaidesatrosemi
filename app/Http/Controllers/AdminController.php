@@ -253,20 +253,28 @@ class AdminController extends Controller
                 'name'      => $validated['nama_pegawai'],
                 'is_active' => $validated['status_pegawai'],
             ];
-
+            // ================= FOTO =================
             if ($request->hasFile('userfilefoto')) {
-                Storage::disk('public')->delete($pegawai->foto);
-
                 $pathFoto = $request->file('userfilefoto')->store('pegawai/foto', 'public');
 
+                // hapus foto lama JIKA ADA
+                if ($pegawai->foto && Storage::disk('public')->exists($pegawai->foto)) {
+                    Storage::disk('public')->delete($pegawai->foto);
+                }
+
                 $updatePegawai['foto'] = $pathFoto;
-                $updateUser['image'] = $pathFoto;
+                $updateUser['image']   = $pathFoto;
             }
 
+            // ================= KTP =================
             if ($request->hasFile('userfilektp')) {
-                Storage::disk('public')->delete($pegawai->ktp);
+                $pathKtp = $request->file('userfilektp')->store('pegawai/ktp', 'public');
 
-                $updatePegawai['ktp'] = $request->file('userfilektp')->store('pegawai/ktp', 'public');
+                if ($pegawai->ktp && Storage::disk('public')->exists($pegawai->ktp)) {
+                    Storage::disk('public')->delete($pegawai->ktp);
+                }
+
+                $updatePegawai['ktp'] = $pathKtp;
             }
 
             $pegawai->update($updatePegawai);

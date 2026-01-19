@@ -3,10 +3,6 @@
         <span>Copyright &copy; {{ date('Y') }} - <a class="text-theme" href="#">Designed by Hasna
                 Rofifah</a></span>
     </div>
-    <div class="col-sm-4 text-right">
-        <a href="#" class="ml-2">Contact Us</a>
-        <a href="#" class="ml-2">Support</a>
-    </div>
 </div>
 
 <script src="{{ asset('assets/js/sweetalert.js') }}"></script>

@@ -82,64 +82,63 @@
                                         type="email"
                                         id="email"
                                         name="email"
+                                        oninput="this.value = this.value.toLowerCase()"
+                                        pattern="^[a-z0-9._%+-]+@gmail\.com$"
+                                        title="Email harus huruf kecil dan menggunakan domain @gmail.com"
                                         value="{{ old('email') }}"
                                         placeholder="nama@gmail.com"
-                                        required
-                                        pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
-                                        title="Email harus menggunakan domain @gmail.com"
                                         class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl
                                         focus:ring-2 focus:ring-blue-900 focus:border-blue-900
                                         transition duration-200 text-sm md:text-base bg-gray-50 focus:bg-white">
+                                    @error('email')
+                                    <p class="mt-2 text-sm text-red-600 flex items-center space-x-1">
+                                        <i class="fa fa-info-circle"></i>
+                                        <span>{{ $message }}</span>
+                                    </p>
+                                    @enderror
                                 </div>
-                                @error('email')
-                                <p class="mt-2 text-sm text-red-600 flex items-center space-x-1">
-                                    <i class="fa fa-info-circle"></i>
-                                    <span>{{ $message }}</span>
-                                </p>
-                                @enderror
-                            </div>
 
-                            <div class="space-y-2">
-                                <label for="password" class="block text-sm font-semibold text-gray-700">Password</label>
+                                <div class="space-y-2">
+                                    <label for="password" class="block text-sm font-semibold text-gray-700">Password</label>
 
-                                <div class="relative group">
-                                    <!-- Icon lock -->
-                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                        <i class="fa fa-lock text-gray-400 group-focus-within:text-blue-900 transition-colors"></i>
+                                    <div class="relative group">
+                                        <!-- Icon lock -->
+                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                            <i class="fa fa-lock text-gray-400 group-focus-within:text-blue-900 transition-colors"></i>
+                                        </div>
+
+                                        <!-- Input password -->
+                                        <input
+                                            type="password"
+                                            id="password"
+                                            name="password"
+                                            placeholder="••••••••"
+                                            class="w-full pl-12 pr-12 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-900 focus:border-blue-900 transition duration-200 text-sm md:text-base bg-gray-50 focus:bg-white">
+
+                                        <!-- Button eye -->
+                                        <button
+                                            type="button"
+                                            onclick="togglePassword()"
+                                            class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-blue-900 focus:outline-none">
+                                            <i id="eyeIcon" class="fa fa-eye"></i>
+                                        </button>
                                     </div>
 
-                                    <!-- Input password -->
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        name="password"
-                                        placeholder="••••••••"
-                                        class="w-full pl-12 pr-12 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-900 focus:border-blue-900 transition duration-200 text-sm md:text-base bg-gray-50 focus:bg-white">
-
-                                    <!-- Button eye -->
-                                    <button
-                                        type="button"
-                                        onclick="togglePassword()"
-                                        class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-blue-900 focus:outline-none">
-                                        <i id="eyeIcon" class="fa fa-eye"></i>
-                                    </button>
+                                    @error('password')
+                                    <p class="mt-2 text-sm text-red-600 flex items-center space-x-1">
+                                        <i class="fa fa-info-circle"></i>
+                                        <span>{{ $message }}</span>
+                                    </p>
+                                    @enderror
                                 </div>
 
-                                @error('password')
-                                <p class="mt-2 text-sm text-red-600 flex items-center space-x-1">
-                                    <i class="fa fa-info-circle"></i>
-                                    <span>{{ $message }}</span>
-                                </p>
-                                @enderror
-                            </div>
-
-                            <div class="pt-4">
-                                <button type="submit"
-                                    class="w-full bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center space-x-2 text-base md:text-lg">
-                                    <span>Masuk Sekarang</span>
-                                    <i class="fa fa-arrow-right"></i>
-                                </button>
-                            </div>
+                                <div class="pt-4">
+                                    <button type="submit"
+                                        class="w-full bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center space-x-2 text-base md:text-lg">
+                                        <span>Masuk Sekarang</span>
+                                        <i class="fa fa-arrow-right"></i>
+                                    </button>
+                                </div>
                         </form>
 
                         <div class="mt-8 text-center">

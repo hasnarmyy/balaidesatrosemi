@@ -143,6 +143,10 @@ class AdminController extends Controller
 
     public function tambahPegawai(Request $request)
     {
+        $request->merge([
+            'email' => strtolower($request->email)
+        ]);
+        
         $validated = $request->validate([
             'nama_pegawai' => 'required|string|max:255',
             'jekel' => 'required|in:L,P',

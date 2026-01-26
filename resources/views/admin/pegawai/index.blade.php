@@ -135,6 +135,11 @@
                                             title="Email harus menggunakan domain @gmail.com"
                                             oninput="this.value = this.value.toLowerCase()">
                                     </div>
+                                    @error('email')
+                                    <small class="text-danger">
+                                        {{ $message }}
+                                    </small>
+                                    @enderror
 
                                     <div class="form-group">
                                         <label>Pendidikan</label>
@@ -373,4 +378,11 @@
         });
     });
 </script>
+@if ($errors->any())
+<script>
+    $(document).ready(function() {
+        $('#myModal').modal('show');
+    });
+</script>
+@endif
 @endsection

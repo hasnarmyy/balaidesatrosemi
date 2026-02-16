@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('tb_pegawai', function (Blueprint $table) {
 
             // Primary Key
-            $table->string('id_pegawai', 255)->primary();
+            $table->string('id_pegawai', 255);
+            $table->primary('id_pegawai');
 
             // Foreign Keys (INT biasa, TANPA unsigned)
             $table->integer('id_user');

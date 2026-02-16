@@ -11,7 +11,6 @@ class CreateTbLemburTable extends Migration
         Schema::create('tb_lembur', function (Blueprint $table) {
             $table->integer('id_lembur')->autoIncrement();
             $table->string('id_pegawai', 255);
-            $table->index('id_pegawai');
             $table->date('date');
             $table->time('waktu_lembur');
             $table->integer('status');

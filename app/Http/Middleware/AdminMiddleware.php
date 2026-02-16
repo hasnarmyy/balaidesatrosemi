@@ -16,10 +16,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role_id === 1) {
+        if (Auth::check() && (int) Auth::user()->role_id === 1) {
             return $next($request);
         }
 
-        abort(403, 'Unauthorized');
+        abort(401, 'Unauthorized');
     }
 }
